@@ -283,8 +283,8 @@ export default function App() {
             initial={{ scale: 1.1, opacity: 0 }}
             animate={{ scale: 1, opacity: 0.4 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
-            src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=1920" 
-            alt="Saqib Garments Islamabad Luxury Fashion"
+            src="https://images.unsplash.com/photo-1679212622264-646085f5653f?auto=format&fit=crop&q=80&w=1920" 
+            alt="Saqib Garments Islamabad Men's Clothing Collection"
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-[#0B0B0B]/60 to-[#0B0B0B]/40" />
