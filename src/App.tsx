@@ -290,8 +290,8 @@ export default function App() {
             initial={{ scale: 1.1, opacity: 0 }}
             animate={{ scale: 1, opacity: 0.4 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
-            src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=1920" 
-            alt="Saqib Garments Islamabad Luxury Fashion"
+            src="https://images.unsplash.com/photo-1679212622264-646085f5653f?auto=format&fit=crop&q=80&w=1920" 
+            alt="Saqib Garments Islamabad Men's Fashion Collection"
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-[#0B0B0B]/60 to-[#0B0B0B]/40" />
@@ -336,11 +336,11 @@ export default function App() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2"
           >
             <a 
-              href="#collections"
+              href="#about"
               className="w-full sm:w-auto inline-flex items-center justify-center space-x-3 bg-gradient-to-r from-[#FF0000] to-[#FF4438] text-[#0B0B0B] px-8 py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:shadow-[0_0_30px_rgba(255,0,0,0.5)] transition-all duration-300 transform hover:-translate-y-1"
             >
-              <span>Explore Collection</span>
-              <ArrowRight className="w-4 h-4" />
+              <span>Get Directions</span>
+              <Compass className="w-4 h-4" />
             </a>
             <button 
               onClick={() => openWhatsApp()}
