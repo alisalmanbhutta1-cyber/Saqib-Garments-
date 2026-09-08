@@ -13,6 +13,13 @@ const TikTokIcon = ({ className }) => (
   </svg>
 );
 
+const WhatsAppIcon = ({ className }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12.001 2C6.478 2 2 6.478 2 12c0 1.887.525 3.65 1.435 5.152L2 22l4.985-1.408A9.953 9.953 0 0 0 12.001 22C17.523 22 22 17.523 22 12S17.523 2 12.001 2zm0 18.157a8.13 8.13 0 0 1-4.152-1.14l-.298-.177-3.083.871.826-3.02-.194-.31A8.106 8.106 0 0 1 3.845 12c0-4.501 3.653-8.157 8.156-8.157 4.502 0 8.157 3.656 8.157 8.157 0 4.502-3.655 8.157-8.157 8.157z"/>
+  </svg>
+);
+
 /* Precision Brand Logo Component matching LOGO.png (Bright Red Background & Bold White SG) */
 const BrandLogo = ({ className = "w-10 h-10" }) => (
   <div className={`relative flex items-center justify-center bg-[#FF0000] rounded-xl overflow-hidden shadow-md select-none shrink-0 ${className}`}>
@@ -190,7 +197,7 @@ export default function App() {
 
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center space-x-8 text-xs font-semibold tracking-widest uppercase text-[#A7A7A7]">
-            {['Home', 'Collections', 'Reviews', 'About', 'Contact'].map((item) => (
+            {['Home', 'Collections', 'About', 'Reviews', 'Contact'].map((item) => (
               <a 
                 key={item} 
                 href={`#${item.toLowerCase()}`}
@@ -242,7 +249,7 @@ export default function App() {
               className="lg:hidden bg-[#171717] border-b border-[#FF0000]/20 px-6 py-6"
             >
               <div className="flex flex-col space-y-4">
-                {['Home', 'Collections', 'Reviews', 'About', 'Contact'].map((item) => (
+                {['Home', 'Collections', 'About', 'Reviews', 'Contact'].map((item) => (
                   <a 
                     key={item} 
                     href={`#${item.toLowerCase()}`}
@@ -283,8 +290,8 @@ export default function App() {
             initial={{ scale: 1.1, opacity: 0 }}
             animate={{ scale: 1, opacity: 0.4 }}
             transition={{ duration: 1.5, ease: "easeOut" }}
-            src="https://images.unsplash.com/photo-1679212622264-646085f5653f?auto=format&fit=crop&q=80&w=1920" 
-            alt="Saqib Garments Islamabad Men's Clothing Collection"
+            src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=1920" 
+            alt="Saqib Garments Islamabad Luxury Fashion"
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-[#0B0B0B]/60 to-[#0B0B0B]/40" />
@@ -372,6 +379,53 @@ export default function App() {
         </div>
       </section>
 
+      {/* Collections Section */}
+      <section id="collections" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
+          <span className="text-xs font-semibold uppercase tracking-widest text-[#FF0000]">Curated Wardrobe</span>
+          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-white">Explore Our Collections</h2>
+          <div className="w-16 h-0.5 bg-[#FF0000] mx-auto"></div>
+          <p className="text-sm text-[#A7A7A7]">
+            Discover refined silhouettes and exquisite traditional and modern attire tailored for every member of the family.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {COLLECTIONS_DATA.map((col, idx) => (
+            <motion.div 
+              key={col.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              className="relative group overflow-hidden rounded-3xl h-[450px] border border-[#FF0000]/20 cursor-pointer"
+              onClick={() => openWhatsApp(col.title)}
+            >
+              <img 
+                src={col.image} 
+                alt={col.title}
+                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-[#0B0B0B]/40 to-transparent transition-opacity duration-500 group-hover:opacity-95" />
+              
+              <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                <span className="text-xs font-semibold uppercase tracking-widest text-[#FF0000] mb-1">
+                  {col.subtitle}
+                </span>
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-2">
+                  {col.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-[#A7A7A7] mb-2 max-w-md line-clamp-2">
+                  {col.description}
+                </p>
+              </div>
+
+              <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#FF0000] rounded-3xl transition-colors duration-500 pointer-events-none" />
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       {/* Feature Highlights */}
       <section className="py-20 bg-[#171717] border-y border-[#FF0000]/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -421,50 +475,60 @@ export default function App() {
         </div>
       </section>
 
-      {/* Collections Section */}
-      <section id="collections" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-          <span className="text-xs font-semibold uppercase tracking-widest text-[#FF0000]">Curated Wardrobe</span>
-          <h2 className="font-serif text-3xl sm:text-5xl font-bold text-white">Explore Our Collections</h2>
-          <div className="w-16 h-0.5 bg-[#FF0000] mx-auto"></div>
-          <p className="text-sm text-[#A7A7A7]">
-            Discover refined silhouettes and exquisite traditional and modern attire tailored for every member of the family.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {COLLECTIONS_DATA.map((col, idx) => (
-            <motion.div 
-              key={col.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="relative group overflow-hidden rounded-3xl h-[450px] border border-[#FF0000]/20 cursor-pointer"
-              onClick={() => openWhatsApp(col.title)}
-            >
-              <img 
-                src={col.image} 
-                alt={col.title}
-                className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-[#0B0B0B]/40 to-transparent transition-opacity duration-500 group-hover:opacity-95" />
-              
-              <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                <span className="text-xs font-semibold uppercase tracking-widest text-[#FF0000] mb-1">
-                  {col.subtitle}
-                </span>
-                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-2">
-                  {col.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-[#A7A7A7] mb-2 max-w-md line-clamp-2">
-                  {col.description}
-                </p>
+      {/* About Section */}
+      <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#FF0000]">Local Clothing Destination</span>
+            <h2 className="font-serif text-3xl sm:text-5xl font-bold text-white leading-tight">
+              Your Local Clothing Destination in G-9 Markaz
+            </h2>
+            <div className="w-16 h-0.5 bg-[#FF0000]"></div>
+            <p className="text-sm sm:text-base text-[#A7A7A7] leading-relaxed">
+              With two convenient branches located in <strong className="text-white">Downtown</strong> and <strong className="text-white">Allah Wala Plaza</strong>, G-9 Markaz, Islamabad, <strong className="text-white">Saqib Garments</strong> has earned the trust of families across the capital with a stellar 4.8-star rating from over 62 verified customer reviews. We specialize in providing quality attire, helpful in-store shopping, and prompt order assistance.
+            </p>
+            
+            <div className="grid grid-cols-2 gap-6 pt-4">
+              <div className="bg-[#171717] p-6 rounded-2xl border border-[#FF0000]/20">
+                <div className="font-serif text-3xl font-bold text-[#FF0000] mb-1">4.8 ★</div>
+                <div className="text-xs text-[#A7A7A7]">Google Rating Score</div>
               </div>
+              <div className="bg-[#171717] p-6 rounded-2xl border border-[#FF0000]/20">
+                <div className="font-serif text-3xl font-bold text-[#FF0000] mb-1">62+</div>
+                <div className="text-xs text-[#A7A7A7]">Verified Reviews</div>
+              </div>
+            </div>
+          </div>
 
-              <div className="absolute inset-0 border-2 border-transparent group-hover:border-[#FF0000] rounded-3xl transition-colors duration-500 pointer-events-none" />
-            </motion.div>
-          ))}
+          <div className="relative h-[450px] rounded-3xl overflow-hidden border border-[#FF0000]/30">
+            <img 
+              src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=900" 
+              alt="Saqib Garments Store Front"
+              className="w-full h-full object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B]/80 via-transparent to-transparent"></div>
+            <div className="absolute bottom-6 left-6 right-6 p-6 bg-[#0B0B0B]/90 backdrop-blur-md rounded-2xl border border-[#FF0000]/30 flex flex-col space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h4 className="font-serif font-bold text-white text-sm">Branch 1: Downtown</h4>
+                  <p className="text-[10px] text-[#A7A7A7]">G-9 Markaz, Islamabad</p>
+                </div>
+                <a href={BUSINESS_DATA.locations[0].mapUrl} target="_blank" rel="noopener noreferrer" className="bg-[#FF0000] text-[#0B0B0B] p-2 rounded-lg hover:scale-105 transition-transform" aria-label="Get Directions">
+                  <Compass className="w-4 h-4" />
+                </a>
+              </div>
+              <div className="w-full h-px bg-white/10"></div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <h4 className="font-serif font-bold text-white text-sm">Branch 2: Allah Wala Plaza</h4>
+                  <p className="text-[10px] text-[#A7A7A7]">G-9 Markaz, Islamabad</p>
+                </div>
+                <a href={BUSINESS_DATA.locations[1].mapUrl} target="_blank" rel="noopener noreferrer" className="bg-[#FF0000] text-[#0B0B0B] p-2 rounded-lg hover:scale-105 transition-transform" aria-label="Get Directions">
+                  <Compass className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -531,63 +595,6 @@ export default function App() {
             </a>
           </div>
 
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#FF0000]">Local Clothing Destination</span>
-            <h2 className="font-serif text-3xl sm:text-5xl font-bold text-white leading-tight">
-              Your Local Clothing Destination in G-9 Markaz
-            </h2>
-            <div className="w-16 h-0.5 bg-[#FF0000]"></div>
-            <p className="text-sm sm:text-base text-[#A7A7A7] leading-relaxed">
-              With two convenient branches located in <strong className="text-white">Downtown</strong> and <strong className="text-white">Allah Wala Plaza</strong>, G-9 Markaz, Islamabad, <strong className="text-white">Saqib Garments</strong> has earned the trust of families across the capital with a stellar 4.8-star rating from over 62 verified customer reviews. We specialize in providing quality attire, helpful in-store shopping, and prompt order assistance.
-            </p>
-            
-            <div className="grid grid-cols-2 gap-6 pt-4">
-              <div className="bg-[#171717] p-6 rounded-2xl border border-[#FF0000]/20">
-                <div className="font-serif text-3xl font-bold text-[#FF0000] mb-1">4.8 ★</div>
-                <div className="text-xs text-[#A7A7A7]">Google Rating Score</div>
-              </div>
-              <div className="bg-[#171717] p-6 rounded-2xl border border-[#FF0000]/20">
-                <div className="font-serif text-3xl font-bold text-[#FF0000] mb-1">62+</div>
-                <div className="text-xs text-[#A7A7A7]">Verified Reviews</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="relative h-[450px] rounded-3xl overflow-hidden border border-[#FF0000]/30">
-            <img 
-              src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=900" 
-              alt="Saqib Garments Store Front"
-              className="w-full h-full object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B]/80 via-transparent to-transparent"></div>
-            <div className="absolute bottom-6 left-6 right-6 p-6 bg-[#0B0B0B]/90 backdrop-blur-md rounded-2xl border border-[#FF0000]/30 flex flex-col space-y-4">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h4 className="font-serif font-bold text-white text-sm">Branch 1: Downtown</h4>
-                  <p className="text-[10px] text-[#A7A7A7]">G-9 Markaz, Islamabad</p>
-                </div>
-                <a href={BUSINESS_DATA.locations[0].mapUrl} target="_blank" rel="noopener noreferrer" className="bg-[#FF0000] text-[#0B0B0B] p-2 rounded-lg hover:scale-105 transition-transform" aria-label="Get Directions">
-                  <Compass className="w-4 h-4" />
-                </a>
-              </div>
-              <div className="w-full h-px bg-white/10"></div>
-              <div className="flex items-center justify-between">
-                <div>
-                  <h4 className="font-serif font-bold text-white text-sm">Branch 2: Allah Wala Plaza</h4>
-                  <p className="text-[10px] text-[#A7A7A7]">G-9 Markaz, Islamabad</p>
-                </div>
-                <a href={BUSINESS_DATA.locations[1].mapUrl} target="_blank" rel="noopener noreferrer" className="bg-[#FF0000] text-[#0B0B0B] p-2 rounded-lg hover:scale-105 transition-transform" aria-label="Get Directions">
-                  <Compass className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -722,7 +729,7 @@ export default function App() {
           <div className="space-y-4">
             <h4 className="font-serif font-bold text-white text-sm uppercase tracking-widest">Quick Links</h4>
             <ul className="space-y-2 text-xs text-[#A7A7A7]">
-              {['Home', 'Collections', 'Reviews', 'About', 'Contact'].map((item) => (
+              {['Home', 'Collections', 'About', 'Reviews', 'Contact'].map((item) => (
                 <li key={item}>
                   <a href={`#${item.toLowerCase()}`} className="hover:text-[#FF0000] transition-colors">
                     {item}
@@ -811,7 +818,7 @@ export default function App() {
           className="relative group bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all duration-300 flex items-center justify-center"
           aria-label="Chat on WhatsApp"
         >
-          <MessageCircle className="w-7 h-7 fill-current" />
+          <WhatsAppIcon className="w-7 h-7 fill-current" />
           <span className="absolute right-full mr-3 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-[#0B0B0B] border border-[#FF0000]/40 text-[#F7F2E8] text-xs font-bold rounded-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl">
             Chat on WhatsApp
           </span>
