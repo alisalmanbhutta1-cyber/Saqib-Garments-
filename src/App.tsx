@@ -827,22 +827,6 @@ export default function App() {
 
       {/* Mobile Bottom Action Bar */}
       <div className="fixed bottom-0 left-0 right-0 z-40 bg-[#0B0B0B]/95 backdrop-blur-md border-t border-[#FF0000]/30 py-3 px-4 flex items-center justify-around sm:hidden">
-        <a 
-          href={`tel:${BUSINESS_DATA.phone}`}
-          className="flex flex-col items-center justify-center text-[#F7F2E8] hover:text-[#FF0000] text-[10px] uppercase font-bold tracking-wider"
-        >
-          <Phone className="w-5 h-5 mb-1 text-[#FF0000]" />
-          <span>Call</span>
-        </a>
-        <div className="w-[1px] h-8 bg-white/10"></div>
-        <button 
-          onClick={() => openWhatsApp()}
-          className="flex flex-col items-center justify-center text-[#F7F2E8] hover:text-[#FF0000] text-[10px] uppercase font-bold tracking-wider"
-        >
-          <MessageCircle className="w-5 h-5 mb-1 text-[#25D366]" />
-          <span>WhatsApp</span>
-        </button>
-        <div className="w-[1px] h-8 bg-white/10"></div>
         <button 
           onClick={() => openWhatsApp()}
           className="flex flex-col items-center justify-center text-[#F7F2E8] hover:text-[#FF0000] text-[10px] uppercase font-bold tracking-wider"
@@ -850,6 +834,24 @@ export default function App() {
           <WhatsAppIcon className="w-5 h-5 mb-1 text-[#25D366] fill-current" />
           <span>WhatsApp</span>
         </button>
+        <div className="w-[1px] h-8 bg-white/10"></div>
+        <a 
+          href={BUSINESS_DATA.googleMapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex flex-col items-center justify-center text-[#F7F2E8] hover:text-[#FF0000] text-[10px] uppercase font-bold tracking-wider"
+        >
+          <MapPin className="w-5 h-5 mb-1 text-[#FF0000]" />
+          <span>Directions</span>
+        </a>
+        <div className="w-[1px] h-8 bg-white/10"></div>
+        <a 
+          href={`tel:${BUSINESS_DATA.phone}`}
+          className="flex flex-col items-center justify-center text-[#F7F2E8] hover:text-[#FF0000] text-[10px] uppercase font-bold tracking-wider"
+        >
+          <Phone className="w-5 h-5 mb-1 text-[#FF0000]" />
+          <span>Call</span>
+        </a>
       </div>
 
     </div>
