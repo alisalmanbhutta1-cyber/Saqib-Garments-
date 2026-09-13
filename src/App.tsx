@@ -843,15 +843,13 @@ export default function App() {
           <span>WhatsApp</span>
         </button>
         <div className="w-[1px] h-8 bg-white/10"></div>
-        <a 
-          href={BUSINESS_DATA.googleMapsUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button 
+          onClick={() => openWhatsApp()}
           className="flex flex-col items-center justify-center text-[#F7F2E8] hover:text-[#FF0000] text-[10px] uppercase font-bold tracking-wider"
         >
-          <MapPin className="w-5 h-5 mb-1 text-[#FF0000]" />
-          <span>Directions</span>
-        </a>
+          <WhatsAppIcon className="w-5 h-5 mb-1 text-[#25D366] fill-current" />
+          <span>WhatsApp</span>
+        </button>
       </div>
 
     </div>
