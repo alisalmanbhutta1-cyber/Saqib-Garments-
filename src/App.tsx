@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { 
   Phone, MessageCircle, MapPin, Clock, Star, 
   Menu, X, ArrowRight, ExternalLink, ShieldCheck, 
@@ -156,15 +156,26 @@ export default function App() {
     window.open(`https://wa.me/${BUSINESS_DATA.whatsappNumber}?text=${encodeURIComponent(text)}`, '_blank');
   };
 
-  // Reliable in-page navigation (works on mobile / embedded previews where plain #hash links can fail)
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    setMobileMenuOpen(false);
+  /* Mobile menu navigation.
+     The menu slide animation (height: auto) resets the page scroll position while it runs,
+     which cancelled the jump to the section. So we close the menu first and scroll to the
+     chosen section only once the menu has finished closing. */
+  const pendingSection = useRef(null);
+
+  const scrollToPendingSection = () => {
+    const id = pendingSection.current;
+    if (!id) return;
+    pendingSection.current = null;
     const el = document.getElementById(id);
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const handleMobileNavClick = (e, id) => {
+    e.preventDefault();
+    pendingSection.current = id;
+    setMobileMenuOpen(false);
+    // Safety net in case the exit animation callback does not fire
+    setTimeout(scrollToPendingSection, 800);
   };
 
   return (
@@ -194,7 +205,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
           {/* Brand Logo */}
-          <a href="#home" onClick={(e) => scrollToSection(e, 'home')} className="flex items-center space-x-3 group">
+          <a href="#home" className="flex items-center space-x-3 group">
             <BrandLogo className="w-10 h-10 border border-[#FF0000]/30 group-hover:scale-105 transition-transform" />
             <div className="flex flex-col">
               <span className="font-serif text-lg sm:text-xl font-bold tracking-wider text-white group-hover:text-[#FF0000] transition-colors leading-none">
@@ -212,7 +223,6 @@ export default function App() {
               <a 
                 key={item} 
                 href={`#${item.toLowerCase()}`}
-                onClick={(e) => scrollToSection(e, item.toLowerCase())}
                 className="hover:text-[#FF0000] transition-colors py-1 relative group"
               >
                 {item}
@@ -252,20 +262,20 @@ export default function App() {
         </div>
 
         {/* Mobile Slide-down Menu */}
-        <AnimatePresence>
+        <AnimatePresence onExitComplete={scrollToPendingSection}>
           {mobileMenuOpen && (
             <motion.div 
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden bg-[#171717] border-b border-[#FF0000]/20 px-6 py-6 max-h-[80vh] overflow-y-auto"
+              className="lg:hidden bg-[#171717] border-b border-[#FF0000]/20 px-6 py-6"
             >
               <div className="flex flex-col space-y-4">
                 {['Home', 'Collections', 'About', 'Reviews', 'Contact'].map((item) => (
                   <a 
                     key={item} 
                     href={`#${item.toLowerCase()}`}
-                    onClick={(e) => scrollToSection(e, item.toLowerCase())}
+                    onClick={(e) => handleMobileNavClick(e, item.toLowerCase())}
                     className="text-sm font-semibold tracking-wider text-[#A7A7A7] hover:text-[#FF0000] transition-colors uppercase border-b border-white/5 pb-2"
                   >
                     {item}
@@ -743,7 +753,7 @@ export default function App() {
             <ul className="space-y-2 text-xs text-[#A7A7A7]">
               {['Home', 'Collections', 'About', 'Reviews', 'Contact'].map((item) => (
                 <li key={item}>
-                  <a href={`#${item.toLowerCase()}`} onClick={(e) => scrollToSection(e, item.toLowerCase())} className="hover:text-[#FF0000] transition-colors">
+                  <a href={`#${item.toLowerCase()}`} className="hover:text-[#FF0000] transition-colors">
                     {item}
                   </a>
                 </li>
