@@ -54,16 +54,16 @@ const BUSINESS_DATA = {
   reviewCount: 62,
   locations: [
     {
-      name: "Downtown Branch",
-      address: "Shop 11, Downtown G-9, Shandar Plaza, G-9 Markaz, Islamabad, 44090, Pakistan",
-      shortAddress: "Downtown, G-9 Markaz",
-      mapUrl: "https://maps.app.goo.gl/dUkvgmvmPtdYYQuA6"
-    },
-    {
       name: "Allah Wala Plaza Branch",
       address: "Karachi Company, ALLAH Wala Plaza, Saqib Garments, G-9 Markaz, Islamabad, 44090, Pakistan",
       shortAddress: "Allah Wala Plaza, G-9 Markaz",
       mapUrl: "https://maps.app.goo.gl/CTwTQGgqQCXoGrMD6"
+    },
+    {
+      name: "Downtown Branch",
+      address: "Shop 11, Downtown G-9, Shandar Plaza, G-9 Markaz, Islamabad, 44090, Pakistan",
+      shortAddress: "Downtown, G-9 Markaz",
+      mapUrl: "https://maps.app.goo.gl/dUkvgmvmPtdYYQuA6"
     }
   ],
   address: "Shop 11, Downtown G-9, Shandar Plaza, G-9 Markaz, Islamabad, 44090, Pakistan",
@@ -80,6 +80,13 @@ const BUSINESS_DATA = {
 
 const COLLECTIONS_DATA = [
   {
+    id: "casual-wear",
+    title: "Casual Wear",
+    subtitle: "Everyday Elegance",
+    description: "Breathable fabrics, contemporary cuts, and effortless styling for daily comfort.",
+    image: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&q=80&w=800"
+  },
+  {
     id: "active-wear",
     title: "Active Wear",
     subtitle: "Performance & Comfort",
@@ -92,13 +99,6 @@ const COLLECTIONS_DATA = [
     subtitle: "Athletic Excellence",
     description: "Premium athletic gear engineered for maximum mobility and endurance.",
     image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&q=80&w=800"
-  },
-  {
-    id: "casual-wear",
-    title: "Casual Wear",
-    subtitle: "Everyday Elegance",
-    description: "Breathable fabrics, contemporary cuts, and effortless styling for daily comfort.",
-    image: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&q=80&w=800"
   },
   {
     id: "custom-wear",
@@ -507,7 +507,7 @@ export default function App() {
             </h2>
             <div className="w-16 h-0.5 bg-[#FF0000]"></div>
             <p className="text-sm sm:text-base text-[#A7A7A7] leading-relaxed">
-              With two convenient branches located in <strong className="text-white">Downtown</strong> and <strong className="text-white">Allah Wala Plaza</strong>, G-9 Markaz, Islamabad, <strong className="text-white">Saqib Garments</strong> has earned the trust of families across the capital with a stellar 4.8-star rating from over 62 verified customer reviews. We specialize in providing quality attire, helpful in-store shopping, and prompt order assistance.
+              With two convenient branches located in <strong className="text-white">Allah Wala Plaza</strong> and <strong className="text-white">Downtown</strong>, G-9 Markaz, Islamabad, <strong className="text-white">Saqib Garments</strong> has earned the trust of families across the capital with a stellar 4.8-star rating from over 62 verified customer reviews. We specialize in providing quality attire, helpful in-store shopping, and prompt order assistance.
             </p>
             
             <div className="grid grid-cols-2 gap-6 pt-4">
@@ -532,7 +532,7 @@ export default function App() {
             <div className="absolute bottom-6 left-6 right-6 p-6 bg-[#0B0B0B]/90 backdrop-blur-md rounded-2xl border border-[#FF0000]/30 flex flex-col space-y-4">
               <div className="flex items-center justify-between">
                 <div>
-                  <h4 className="font-serif font-bold text-white text-sm">Branch 1: Downtown</h4>
+                  <h4 className="font-serif font-bold text-white text-sm">Branch 1: Allah Wala Plaza</h4>
                   <p className="text-[10px] text-[#A7A7A7]">G-9 Markaz, Islamabad</p>
                 </div>
                 <a href={BUSINESS_DATA.locations[0].mapUrl} target="_blank" rel="noopener noreferrer" className="bg-[#FF0000] text-[#0B0B0B] p-2 rounded-lg hover:scale-105 transition-transform" aria-label="Get Directions">
@@ -542,7 +542,7 @@ export default function App() {
               <div className="w-full h-px bg-white/10"></div>
               <div className="flex items-center justify-between">
                 <div>
-                  <h4 className="font-serif font-bold text-white text-sm">Branch 2: Allah Wala Plaza</h4>
+                  <h4 className="font-serif font-bold text-white text-sm">Branch 2: Downtown</h4>
                   <p className="text-[10px] text-[#A7A7A7]">G-9 Markaz, Islamabad</p>
                 </div>
                 <a href={BUSINESS_DATA.locations[1].mapUrl} target="_blank" rel="noopener noreferrer" className="bg-[#FF0000] text-[#0B0B0B] p-2 rounded-lg hover:scale-105 transition-transform" aria-label="Get Directions">
@@ -768,8 +768,8 @@ export default function App() {
               {BUSINESS_DATA.openingHours}
             </p>
             <div className="text-xs text-[#FF0000] flex flex-col space-y-1">
-              <span>• Downtown, G-9 Markaz</span>
               <span>• Allah Wala Plaza, G-9 Markaz</span>
+              <span>• Downtown, G-9 Markaz</span>
             </div>
           </div>
 
